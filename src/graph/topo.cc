@@ -288,6 +288,11 @@ ncclResult_t ncclTopoPrint(struct ncclTopoSystem* s) {
   return ncclSuccess;
 }
 
+NCCL_API(ncclResult_t, p2p_print_topo, struct ncclTopoSystem* s);
+ncclResult_t p2p_print_topo(struct ncclTopoSystem* s) {
+  ncclTopoPrint(s);
+}
+
 static ncclResult_t ncclTopoSort(struct ncclTopoNode* node, struct ncclTopoNode* upNode) {
   // Shift all links to have upLink as last link
   if (upNode) {
@@ -677,6 +682,11 @@ ncclResult_t ncclTopoGetSystem(struct ncclComm* comm, struct ncclTopoSystem** sy
   NCCLCHECK(ncclTopoGetSystemFromXml(xml, system));
   free(xml);
   return ncclSuccess;
+}
+
+NCCL_API(ncclResult_t, p2p_get_topo, struct ncclComm* comm, struct ncclTopoSystem** system);
+ncclResult_t p2p_get_topo(struct ncclComm* comm, struct ncclTopoSystem** system) {
+  ncclTopoGetSystem(comm, system);
 }
 
 static ncclResult_t getLocalNetMask(struct ncclTopoSystem* system, int g, uint64_t* localNetMask, int* type) {

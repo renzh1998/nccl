@@ -417,6 +417,18 @@ ncclResult_t pncclGroupStart();
 ncclResult_t  ncclGroupEnd();
 ncclResult_t pncclGroupEnd();
 
+
+/*
+ * print topology
+ */
+
+struct ncclTopoSystem;
+
+ncclResult_t p2p_get_topo(struct ncclComm* comm, struct ncclTopoSystem** system);
+ncclResult_t p2p_print_topo(struct ncclTopoSystem* s);
+
+
+
 #ifdef __cplusplus
 } // end extern "C"
 #endif
